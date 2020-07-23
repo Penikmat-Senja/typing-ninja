@@ -3,13 +3,12 @@ const app = express()
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const cors = require('cors')
+const mainRoute = require('./routes/mainRoute')
 
 app.use(cors())
 // app.use(express.json())
 
-app.get('/', (req, res) => {
-  res.send("hello world")
-});
+app.use('/', mainRoute);
 
 io.on('connection', (socket) => {
   let  data = 
@@ -37,7 +36,7 @@ io.on('connection', (socket) => {
     socket.emit('new-message', messageDariClient);
     // io.emit("new-message", messageDariClient)
   })
-  
+
   console.log(data);
   // app.set("io", {
   //   io: io,
