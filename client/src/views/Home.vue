@@ -1,31 +1,47 @@
 <template>
   <div class="container">
-  <form @submit.prevent="userLogin" >
-  <div class="form-group">
-    <label for="username">Your Name</label>
-    <input v-model="username" type="text" class="form-control" id="username" aria-describedby="emailHelp">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
+    <form @submit.prevent="userLogin">
+      <div class="form-group">
+        <label for="username">Your Name</label>
+        <input
+          v-model="username"
+          type="text"
+          class="form-control"
+          id="username"
+          aria-describedby="emailHelp"
+        />
+        <small
+          id="emailHelp"
+          class="form-text text-muted"
+        >We'll never share your email with anyone else.</small>
+      </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-</div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
 </template>
 
 <script>
+import io from "socket.io-client";
+
+const socket = io("http://localhost:3000");
 export default {
   data() {
     return {
-      username: ''
-    }
+      username: ""
+    };
   },
   methods: {
     userLogin() {
-      this.$store.dispatch('addUser', this.username);
-      localStorage.name = this.username
-      localStorage.score = Number(0)
+      let payload = { username: this.username, score: 0 };
+      this.$store.dispatch("addUser", this.username);
+      localStorage.name = this.username;
+      localStorage.score = Number(0);
+      // socket.emit("addplayer", payload => {
+      //   //  this.messages = payload.content;
+      // });
+      socket.emit("addplayer", payload);
     }
   }
-
-}
+};
 </script>
