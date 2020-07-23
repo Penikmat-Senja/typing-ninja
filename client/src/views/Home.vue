@@ -22,7 +22,8 @@ export default {
   methods: {
     userLogin() {
       this.$store.dispatch('addUser', this.username);
-
+      localStorage.name = this.username
+      localStorage.score = Number(0)
     }
   }
 
