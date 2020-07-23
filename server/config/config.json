@@ -1,10 +1,10 @@
 {
   "development": {
-    "username": "admin",
-    "password": "admin",
+    "username": "postgres",
+    "password": "postgres",
     "database": "typing-ninja",
     "host": "127.0.0.1",
-    "dialect": "postgre"
+    "dialect": "postgres"
   },
   "test": {
     "username": "root",
