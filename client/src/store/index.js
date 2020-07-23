@@ -22,7 +22,7 @@ export default new Vuex.Store({
       })
         .then((result) => {
           console.log(result, 'result.data');
-          router.push({path: '/about'})
+          router.push({path: '/games'})
         })
         .catch((err) => {
           console.log(err);
