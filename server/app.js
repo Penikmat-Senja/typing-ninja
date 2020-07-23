@@ -3,50 +3,25 @@ const app = express()
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const cors = require('cors')
-const mainRoute = require('./routes/mainRoute')
+const mainRoute = require('./routes/mainRoute');
+const dictionaries = require('./dictionaries.json')
 
 app.use(cors())
-// app.use(express.json())
-
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
 app.use('/', mainRoute);
 
+
+console.log('RANDOM >>>>>>>>>>>>>>>>>>>');
+const getRandom = () => { return dictionaries[Math.floor(Math.random() * dictionaries.length)] }; 
+let data = getRandom()
+
 io.on('connection', (socket) => {
-  let  data = 
-    [
-      {
-        name :'jaja',
-        score: 3,
-      },
-      {
-        name :'miharja',
-        score: 6,
-      },
-    ]
-  
-  data.push({ name: 'sukro', score: 4 })
-  
-  
-  console.log('a user connected');
-  // ketika ada orang yang terkoneksi socket yang diserver
-  // saya akan ngbuat event emitter untuk client
-  socket.emit('visited', "Hi kamu berhasik konek ke server kami");
-
-  socket.on("sendMessage", function (messageDariClient) {
-    data.push({ name: messageDariClient.sender, score: 4 })
-    socket.emit('new-message', messageDariClient);
-    // io.emit("new-message", messageDariClient)
-  })
-
-  console.log(data);
-  // app.set("io", {
-  //   io: io,
-  //   socket: socket
-  // })
+  setInterval(function () {
+    socket.emit('sentences', getRandom());
+  }, 1000);
 });
 
-
-// req.app.socket
-// req.app.io
 http.listen(3000, () => {
   console.log('listening on *:3000');
 });

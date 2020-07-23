@@ -1,17 +1,12 @@
-const router = require('express').Router()
 
+const router = require('express').Router()
+const userController = require('../controller/usersController')
 
 //leaderboard nampilin list nama -> get findall user
 //daftarin user baru ==> post user
 
 
-router.get('/home', (req, res) => {
-  res.send("ini home nantinya")
-
-})
-
-router.get('/', (req, res) => {
-  res.send("ini form pendaftaran nantinya")
-})
+router.get('/', userController.getAll)
+router.post('/', userController.addUser)
 
 module.exports = router
