@@ -3,8 +3,13 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import router from '../router/index.js'
 
+let baseUrl = ""
 Vue.use(Vuex)
-const baseUrl = `http://localhost:3000/`
+if (process.env.NODE_ENV === 'production') {
+  baseUrl = `https://nameless-fjord-30696.herokuapp.com/`
+} else {
+  baseUrl = `http://localhost:3000/`
+}
 export default new Vuex.Store({
   state: {
   },
