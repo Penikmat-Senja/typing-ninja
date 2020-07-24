@@ -16,7 +16,7 @@
         >We'll never share your email with anyone else.</small>
       </div>
 
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary">Lets Rock</button>
     </form>
   </div>
 </template>

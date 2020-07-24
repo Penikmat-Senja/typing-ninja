@@ -17,7 +17,7 @@ export default new Vuex.Store({
         url: `${baseUrl}`,
         data: {
           name: username,
-          score: 1000,
+          score: 0,
         },
       })
         .then((result) => {
