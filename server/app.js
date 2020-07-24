@@ -12,7 +12,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/', mainRoute);
 let count = 100000
-let times = 10
+let times = 60
 let tempUser = []
 const getRandom = () => { return dictionaries[Math.floor(Math.random() * dictionaries.length)] };
 
@@ -65,10 +65,10 @@ io.on('connection', (socket) => {
 
   socket.on("resultScore", function () {
     // socket.broadcast.emit('sentences', user)
-
-    socket.emit('scores', user.sort(function(a, b) {
-        return b.score - a.score;
-    }));
+    let sorted = user.sort(function(a, b) {
+      return b.score - a.score;
+    })
+    socket.emit('scores', sorted.slice((0, 10)));
     // times = 10
     // io.emit('scores', user);
   })
@@ -89,7 +89,7 @@ io.on('connection', (socket) => {
   socket.on('resetTime', data => {
     clearInterval(limit)
     clearInterval(randomKata)
-    times = 10
+    times = 60
     tempUser = []
   })
 
