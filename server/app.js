@@ -63,12 +63,12 @@ io.on('connection', (socket) => {
   })
 
   socket.on("resultScore", function () {
-    socket.broadcast.emit('sentences', user)
+    // socket.broadcast.emit('sentences', user)
 
     socket.emit('scores', user.sort(function(a, b) {
         return b.score - a.score;
     }));
-    times = 10
+    // times = 10
     // io.emit('scores', user);
   })
 
@@ -89,6 +89,7 @@ io.on('connection', (socket) => {
     clearInterval(limit)
     clearInterval(randomKata)
     times = 10
+    tempUser = []
   })
 
 });
