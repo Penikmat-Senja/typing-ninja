@@ -5,6 +5,7 @@ const io = require('socket.io')(http);
 const cors = require('cors')
 const mainRoute = require('./routes/mainRoute');
 const dictionaries = require('./dictionaries.json')
+const PORT = process.env.PORT || 3000
 
 app.use(cors())
 app.use(express.json())
@@ -95,6 +96,6 @@ io.on('connection', (socket) => {
 });
 
 
-http.listen(3000, () => {
-  console.log('listening on *:3000');
+http.listen(PORT, () => {
+  console.log('listening on *:', PORT);
 });
