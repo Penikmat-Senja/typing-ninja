@@ -44,7 +44,7 @@ import io from "socket.io-client";
 import router from "../router";
 import List from "../components/List";
 
-const socket = io("http://localhost:3000");
+const socket = io("https://nameless-fjord-30696.herokuapp.com");
 export default {
   data() {
     return {
@@ -97,7 +97,7 @@ export default {
       this.isShowScore = true;
     },
     reset() {
-      this.times = 60;
+      this.times= 60
       socket.emit("resetTime");
     },
     newGame() {
