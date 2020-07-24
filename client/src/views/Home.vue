@@ -1,23 +1,26 @@
 <template>
   <div class="container">
-    <form @submit.prevent="userLogin">
-      <div class="form-group">
-        <label for="username">Your Name</label>
-        <input
-          v-model="username"
-          type="text"
-          class="form-control"
-          id="username"
-          aria-describedby="emailHelp"
-        />
-        <small
-          id="emailHelp"
-          class="form-text text-muted"
-        >We'll never share your email with anyone else.</small>
+    <div class="row justify-content-center">
+      <div class="col-6">
+        <form @submit.prevent="userLogin">
+          <div class="form-group">
+            <label for="username">Your Name</label>
+            <input 
+              v-model="username"
+              type="text"
+              class="form-control text-center"
+              id="username"
+              aria-describedby="emailHelp"
+            />
+            <small
+              id="emailHelp"
+              class="form-text text-muted"
+            >We'll never share your privacy with anyone else.</small>
+          </div>
+          <button type="submit" class="btn btn-primary">Lets Rock</button>
+        </form>
       </div>
-
-      <button type="submit" class="btn btn-primary">Lets Rock</button>
-    </form>
+    </div>
   </div>
 </template>
 
@@ -28,7 +31,7 @@ const socket = io("http://localhost:3000");
 export default {
   data() {
     return {
-      username: ""
+      username: "",
     };
   },
   methods: {
@@ -41,7 +44,7 @@ export default {
       //   //  this.messages = payload.content;
       // });
       socket.emit("addplayer", payload);
-    }
-  }
+    },
+  },
 };
 </script>
